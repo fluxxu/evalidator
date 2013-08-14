@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/fluxxu/evalidator.git"
     },
-    "keywords": ["validation", "mongoose"],
+    "keywords": ["validation"],
     "author": "Flux Xu",
     "license": "MIT",
     "bugs": {
