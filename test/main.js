@@ -22,13 +22,13 @@ describe('EValidator', function () {
                     }, 30);
                 }
             ],
-            'email': {validator: 'isEmail'}
+            'email': {validator: 'isEmail', allowEmpty: true}
         });
 
         it('should pass', function (done) {
             evSimple.validate({
                 name: 'flux',
-                email: 'fluxxu@gmail.com'
+                email: ''
             }, function (err, result) {
                 assert.ifError(err);
                 assert.ok(!result.hasError(), 'Should not have error.');
