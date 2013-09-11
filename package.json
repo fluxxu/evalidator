@@ -17,7 +17,7 @@
         "url": "https://github.com/fluxxu/evalidator/issues"
     },
     "dependencies": {
-        "underscore": "1.5.x",
+        "lodash": "*",
         "async": "0.2.x",
         "validator": "1.4.x"
     }
