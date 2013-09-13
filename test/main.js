@@ -238,4 +238,45 @@ describe('EValidator', function () {
             });
         });
     });
+
+    it('test nested attribute name', function (done) {
+        var ev = new EValidator();
+        ev.addRules({
+            'name': [
+                {validator: 'notEmpty', message: 'Name is empty!'},
+                {validator: 'is', args: [/^[a-z]+$/]},
+                {validator: 'len', args: [2, 16], message: 'Length should be between 2 and 16'},
+                function (value, ctx) {
+                    if (value.charAt(0) != 'f') {
+                        ctx.addError('Name should start with f');
+                    }
+                },
+                function (value, ctx, done) {
+                    setTimeout(function () {
+                        if (value.length <= 3)
+                            ctx.addError('Actually length must > 3');
+                        done();
+                    }, 30);
+                }
+            ],
+            'email': {validator: 'isEmail', allowEmpty: true},
+            'test.nested.value': {validator: 'notEmpty'},
+            'test.nested.value2': {validator: 'notEmpty'}
+        });
+
+        ev.validate({
+            name: 'flux',
+            test: {
+                nested: {
+                    value: 999,
+                    //value2: ''
+                }
+            }
+        }, function (err, result) {
+            assert.ifError(err);
+            var errors = result.getErrors();
+            assert.ok(errors['test.nested.value2'].length == 1, 'test.nested.value2: Should have 1 error');
+            done();
+        });
+    });
 });
