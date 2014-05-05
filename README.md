@@ -121,7 +121,6 @@ ev.validate(obj, 'onCreate', function (err, result) {
 - **isVariableWidth(str)** - check if the string contains a mixture of full and half-width chars.
 
 ### validator.js 1.x.x polyfills
-```javascript
 - **is()                            //Alias for regex()
 - **not()                           //Alias for notRegex()
 - **isUrl()                         //Accepts http, https, ftp
@@ -139,4 +138,3 @@ ev.validate(obj, 'onCreate', function (err, result) {
 - **notIn(options)
 - **max(val)
 - **min(val)
-```
