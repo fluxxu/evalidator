@@ -276,7 +276,7 @@ describe('EValidator', function () {
         }, function (err, result) {
             assert.ifError(err);
             var errors = result.getErrors();
-            assert.ok(errors['test.nested.value2'].length == 1, 'test.nested.value2: Should have 1 error');
+            assert.ok(errors['test.nested.value2'] && errors['test.nested.value2'].length == 1, 'test.nested.value2: Should have 1 error');
             done();
         });
     });
@@ -320,7 +320,7 @@ describe('EValidator', function () {
         })
             .then(function (result) {
                 var errors = result.getErrors();
-                assert.ok(errors['test.nested.value2'].length == 1, 'test.nested.value2: Should have 1 error');
+                assert.ok(errors['test.nested.value2'] && errors['test.nested.value2'].length == 1, 'test.nested.value2: Should have 1 error');
             });
     });
 });
