@@ -58,6 +58,21 @@ ev.validate(obj, function (err, result) {
     }
 });
 
+//use promise
+ev.validate(obj)
+    .then(function (err, result) {
+        assert.ifError(err);
+        if (result.hasError()) {
+          //all errors, maped by attribute name
+          console.log(result.getErrors());
+          
+          //get errors of 'name' attribute
+          console.log(result.getError('name'));
+        }
+    }, function (err) {
+        throw err;
+    });
+
 //execute default rules and 'onCreate' scenario rules
 ev.validate(obj, 'onCreate', function (err, result) {
     //...
