@@ -1,6 +1,6 @@
 {
   "name": "evalidator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An object validator utilizing node-validator. Supports sync/async validation and scenarios.",
   "main": "index.js",
   "scripts": {

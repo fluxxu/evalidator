@@ -1,5 +1,6 @@
 var assert = require('assert'),
-    EValidator = require('../');
+    EValidator = require('../'),
+    Promise = require('bluebird');
 
 describe('EValidator', function () {
     describe('Single group', function () {
@@ -292,12 +293,14 @@ describe('EValidator', function () {
                             ctx.addError('Name should start with f');
                         }
                     },
-                    function (value, ctx, done) {
-                        setTimeout(function () {
-                            if (value.length <= 3)
-                                ctx.addError('Actually length must > 3');
-                            done();
-                        }, 30);
+                    function (value, ctx) {
+                        return new Promise(function (resolve, reject) {
+                            setTimeout(function () {
+                                if (value.length <= 3)
+                                    ctx.addError('Actually length must > 3');
+                                resolve();
+                            }, 30);
+                        });
                     }
                 ],
                 'email': {validator: 'isEmail', allowEmpty: true},
