@@ -1,6 +1,6 @@
 {
   "name": "evalidator",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "An object validator utilizing node-validator. Supports sync/async validation and scenarios.",
   "main": "index.js",
   "scripts": {
@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "lodash": "*",
-    "async": "0.2.x",
-    "validator": "1.4.x",
-    "bluebird": "^1.2.4"
+    "async": "0.x.x",
+    "validator": "1.x.x",
+    "bluebird": "1.x.x"
   }
 }
