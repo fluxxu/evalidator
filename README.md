@@ -121,20 +121,20 @@ ev.validate(obj, 'onCreate', function (err, result) {
 - **isVariableWidth(str)** - check if the string contains a mixture of full and half-width chars.
 
 ### validator.js 1.x.x polyfills
-- **is()                            //Alias for regex()
-- **not()                           //Alias for notRegex()
-- **isUrl()                         //Accepts http, https, ftp
-- **isIPv4()
-- **isIPv6()
-- **isDecimal()
-- **notNull()                       //Check if length is 0
-- **notEmpty()                      //Not just whitespace (input.trim().length !== 0)
-- **regex(pattern, modifiers)       //Usage: regex(/[a-z]/i) or regex('[a-z]','i')
-- **notRegex(pattern, modifiers)
-- **len(min, max)                   //max is optional
-- **isUUIDv3()                      //Alias for isUUID(3)
-- **isUUIDv4()                      //Alias for isUUID(4)
-- **isUUIDv5()                      //Alias for isUUID(5)
-- **notIn(options)
-- **max(val)
-- **min(val)
+- **is()**                            //Alias for regex()
+- **not()**                           //Alias for notRegex()
+- **isUrl()**                         //Accepts http, https, ftp
+- **isIPv4()**
+- **isIPv6()**
+- **isDecimal()**
+- **notNull()**                       //Check if length is 0
+- **notEmpty()**                      //Not just whitespace (input.trim().length !== 0)
+- **regex(pattern, modifiers)**       //Usage: regex(/[a-z]/i) or regex('[a-z]','i')
+- **notRegex(pattern, modifiers)**
+- **len(min, max)**                   //max is optional
+- **isUUIDv3()**                      //Alias for isUUID(3)
+- **isUUIDv4()**                      //Alias for isUUID(4)
+- **isUUIDv5()**                      //Alias for isUUID(5)
+- **notIn(options)**
+- **max(val)**
+- **min(val)**
