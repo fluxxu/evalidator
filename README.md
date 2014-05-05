@@ -23,7 +23,14 @@ ev.addRules({
                     ctx.addError('Actually length must > 3');
                 done();
             }, 30);
-        }
+        },
+        //async rule using promise
+        function (value, ctx) {
+            return someAction().then(function (success) {
+                if (!success)
+                    ctx.addError('someAction failed');
+            });
+        },
     ],
     'email': {validator: 'isEmail', allowEmpty: true}
 }).
