@@ -355,4 +355,23 @@ describe('EValidator', function () {
                 assert.ok(errors.name[0] == 'Name "admin" is reserved.');
             });
     });
+
+    it('thisObject option', function () {
+        var ev = new EValidator({
+            rules: {
+                name: [
+                    function (value, context) {
+                        assert.ok(this.check());
+                    }
+                ]
+            },
+            thisObject: {
+                check: function () {
+                    return true;
+                }
+            }
+        });
+
+        return ev.validate({});
+    });
 });
