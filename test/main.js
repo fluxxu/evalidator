@@ -281,7 +281,7 @@ describe('EValidator', function () {
         });
     });
 
-    it('promise', function () {
+    it('promise', function (done) {
         var ev = new EValidator({
             rules: {
                 'name': [
@@ -321,6 +321,38 @@ describe('EValidator', function () {
             .then(function (result) {
                 var errors = result.getErrors();
                 assert.ok(errors['test.nested.value2'] && errors['test.nested.value2'].length == 1, 'test.nested.value2: Should have 1 error');
+                done();
+            });
+    });
+
+    it('context.hasError', function () {
+        var ev = new EValidator({
+            rules: {
+                name: [
+                    { validator: 'notEmpty', message: 'Name is empty' },
+                    function (value, context) {
+                        if (!context.hasError())
+                        {
+                            if (value == 'admin')
+                                context.addError('Name "admin" is reserved.');
+                        }
+                    }
+                ]
+            }
+        });
+
+        return ev.validate({})
+            .then(function (result) {
+                var errors = result.getErrors();
+                assert.ok(errors.name && errors.name.length == 1, 'should have 1 error');
+            })
+            .then(function () {
+                return ev.validate({ name: 'admin' });
+            })
+            .then(function (result) {
+                var errors = result.getErrors();
+                assert.ok(errors.name && errors.name.length == 1, 'should have 1 error');
+                assert.ok(errors.name[0] == 'Name "admin" is reserved.');
             });
     });
 });
