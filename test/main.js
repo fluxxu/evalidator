@@ -360,7 +360,7 @@ describe('EValidator', function () {
         var ev = new EValidator({
             rules: {
                 name: [
-                    function (value, context) {
+                    function () {
                         assert.ok(this.check());
                     }
                 ]
@@ -373,5 +373,37 @@ describe('EValidator', function () {
         });
 
         return ev.validate({});
+    });
+
+    it('context.yield()', function () {
+        var asyncYield = function (value, context, done) {
+            setTimeout(function () {
+                done(null, context.yield());
+            }, 1);
+        };
+
+        var ev = new EValidator({
+            rules: {
+                syncV: [
+                    function (value, context) {
+                        return context.yield();
+                    },
+                    { validator: 'notEmpty' }
+                ],
+                promiseV: [
+                    Promise.promisify(asyncYield),
+                    { validator: 'notEmpty' }
+                ],
+                asyncV: [
+                    asyncYield,
+                    { validator: 'notEmpty' }
+                ]
+            }
+        });
+
+        return ev.validate({})
+            .then(function (result) {
+                assert.ok(!result.hasError());
+            });
     });
 });
