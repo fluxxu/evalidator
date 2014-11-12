@@ -67,8 +67,7 @@ ev.validate(obj, function (err, result) {
 
 //use promise
 ev.validate(obj)
-    .then(function (err, result) {
-        assert.ifError(err);
+    .then(function (result) {
         if (result.hasError()) {
           //all errors, maped by attribute name
           console.log(result.getErrors());
